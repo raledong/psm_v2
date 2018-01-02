@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+</head>
+<body>
+<!--从上下文中获取name属性并填写到p标签中-->
+    <p th:text="'hello, '+${name}">hello! my new friend!</p>
+    <p th:text="#{welcome.login}"></p>
+    <a th:href="@{/hello/{name}/details(id=3,action='show_all')}"></a>
+</body>
+</html>

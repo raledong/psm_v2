@@ -1,0 +1,64 @@
+server:
+  port: 8080
+spring:
+  scheduler:
+    poolSize: 5
+  datasource:
+    url: jdbc:mysql://101.37.19.32:3306/tss2?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    username: debian-sys-maint
+    password: pyqhvhE5AEKJ2gzX
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: false
+    open-in-view: true
+  jackson:
+    time-zone: GMT+8
+  thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      encoding: UTF-8
+      content-type: text/html
+      cache: false
+      mode: LEGACYHTML5
+#api:
+#  local:
+#    scheme: http
+#    host: 101.37.19.32
+#    port: 8080
+#    secret: d36e5618f03e41b28cbd4b7c248fd507
+#  jenkins:
+#    scheme: http
+#    host: 101.37.19.32
+#    port: 49001
+#    admin: root
+#    token: 188ae36e51c6660024fadf0f3c7d85fb
+#    credential: b42f18c6-014a-4ae7-a991-3e5a8522df51
+#  gitlab:
+#    scheme: http
+#    host: 101.37.19.32
+#    port: 10080
+#    admin: root
+#    password: nju67software
+#    url: /api/v3
+#    token: A3BUxxUb2jNxEUxtxN3P
+#  oss:
+#    endpoint: oss-cn-hangzhou.aliyuncs.com
+#    bucket: tss-exam
+#    key: LTAIGVHNDamRqvhC
+#    secret: lG85fCAQwSIRb0OWeXIhqXB4vkZpK8
+#    prefix: user-dir/
+log4j:
+  logger:
+    org:
+      thymeleaf: DEBUG
+        TemplateEngine:
+          CONFIG: TRACE
+          TIMER: TRACE
+          TEMPLATE_CACHE: TRACE
