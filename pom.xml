@@ -28,6 +28,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!--配置管理-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!--jpa访问数据库-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
