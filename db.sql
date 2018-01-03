@@ -51,8 +51,6 @@ CREATE TABLE product(
   product_serialized_id VARCHAR(255) UNIQUE NOT NULL COMMENT '产品序列号',
   product_category_id INTEGER NOT NULL COMMENT '产品类型ID',
   product_name VARCHAR(255) NOT NULL UNIQUE COMMENT '产品名称',
-  product_cover_image_url TEXT,
-  product_tags VARCHAR(255) DEFAULT '' COMMENT '产品标签',
   product_comment VARCHAR(255) DEFAULT '' COMMENT '产品备注',
   product_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
