@@ -47,8 +47,8 @@ CREATE TABLE category(
 DROP TABLE IF EXISTS product;
 CREATE TABLE product(
   product_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  product_short_id VARCHAR(255) NOT NULL COMMENT '产品编号',
-  product_serialized_id VARCHAR(255) UNIQUE NOT NULL COMMENT '产品序列号',
+  product_short_id VARCHAR(255) NOT NULL COMMENT '产品货号',
+  product_serialized_id VARCHAR(255) UNIQUE COMMENT '产品序列号',
   product_category_id INTEGER NOT NULL COMMENT '产品类型ID',
   product_name VARCHAR(255) NOT NULL UNIQUE COMMENT '产品名称',
   product_comment VARCHAR(255) DEFAULT '' COMMENT '产品备注',
