@@ -11,6 +11,12 @@ import java.util.List;
 @Table(name = "category")
 public class Category {
 
+    public Category(){}
+
+    public Category(Long id, String name){
+        this.setId(id);
+        this.setName(name);
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")

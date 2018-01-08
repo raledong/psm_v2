@@ -1,5 +1,7 @@
+
 server:
   port: 8080
+  context-path: /psm
 spring:
   scheduler:
     poolSize: 5

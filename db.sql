@@ -59,8 +59,8 @@ DROP TABLE IF EXISTS product_spec;
 CREATE TABLE product_spec(
   product_spec_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   product_id INTEGER NOT NULL COMMENT '产品ID',
-  product_spec_size int(6) DEFAULT 110000 COMMENT '产品尺寸',
-  product_spec_color VARCHAR(32) DEFAULT '白色' COMMENT '产品颜色/花型',
+  product_spec_size VARCHAR(32) DEFAULT '均码' COMMENT '产品尺寸',
+  product_spec_color VARCHAR(32) DEFAULT '黑色' COMMENT '产品颜色/花型',
   product_spec_quantity INT(100) DEFAULT 0 COMMENT '产品数量'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

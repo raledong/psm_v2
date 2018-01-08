@@ -1,5 +1,6 @@
 package cn.deerowl.model;
 
+import cn.deerowl.vo.product.ProductForm;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -13,6 +14,16 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 public class Product {
+
+    public Product(){}
+
+    public Product(ProductForm productForm){
+        this.setShortId(productForm.getShortId());
+        this.setSerializedId(productForm.getSerializedId());
+        this.setName(productForm.getName());
+        this.setComment(productForm.getComment());
+        this.setCategory(new Category());
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

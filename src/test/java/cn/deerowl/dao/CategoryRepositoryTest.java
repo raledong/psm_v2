@@ -24,6 +24,6 @@ public class CategoryRepositoryTest {
 
     @Test
     public void testFindALl(){
-        System.out.println(categoryRepository.findOne((long)1).getName());
+        System.out.println(categoryRepository.getBriefCategories().get(0).getId());
     }
 }
