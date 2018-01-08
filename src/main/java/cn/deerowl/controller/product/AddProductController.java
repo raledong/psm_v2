@@ -6,12 +6,10 @@ import cn.deerowl.vo.category.BriefCategoryVO;
 import cn.deerowl.vo.product.ProductDetailVO;
 import cn.deerowl.vo.product.ProductForm;
 import cn.deerowl.vo.product.ProductSpecForm;
-import cn.deerowl.vo.product.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,13 +38,13 @@ public class AddProductController {
         if (bindingResult.hasErrors()){
             return "productAdd";
         }
-        ProductDetailVO productVO = productService.createNewProduct(productForm);
+        ProductDetailVO productVO = productService.createProduct(productForm);
         model.addFlashAttribute("product", productVO);
         model.addAttribute("productId", String.valueOf(productVO.getProductId()));
-        return "redirect:{productId}/spec/new";
+        return "redirect:/product/{productId}/spec/new";
     }
 
-    @RequestMapping("/{productId}/spec/new")
+    @GetMapping("/{productId}/spec/new")
     public String addProductSpec(ProductSpecForm productSpecForm, @PathVariable Long productId, Model model){
         if (!model.containsAttribute("product")){
             // 查找product的信息和相关的spec
@@ -58,6 +56,16 @@ public class AddProductController {
         }
         model.addAttribute(productSpecForm);
         return "product_spec_add";
+    }
+
+    @PostMapping("/{productId}/spec/new")
+    public String addProductSpec(@Valid ProductSpecForm productSpecForm, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            return "product_spec_add";
+        }
+        productService.createProductSpec(productSpecForm);
+        model.addAttribute("productId", productSpecForm.getProductId());
+        return "redirect:/product/{productId}/spec/new";
     }
 
     /**

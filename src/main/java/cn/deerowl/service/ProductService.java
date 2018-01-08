@@ -1,16 +1,14 @@
 package cn.deerowl.service;
 
-import cn.deerowl.vo.product.ProductDetailVO;
-import cn.deerowl.vo.product.ProductForm;
-import cn.deerowl.vo.product.ProductVO;
+import cn.deerowl.vo.product.*;
 
 public interface ProductService {
     /**
-     * 创建新的订单并且返回
+     * 创建新的商品并且返回
      * @param productForm
      * @return
      */
-    ProductDetailVO createNewProduct(ProductForm productForm);
+    ProductDetailVO createProduct(ProductForm productForm);
 
     /**
      * 根据ID找到商品详情
@@ -24,4 +22,12 @@ public interface ProductService {
      * @param productSpecId
      */
     void deleteProductSpec(Long productSpecId);
+
+
+    /**
+     * 创建商品详情并返回
+     * @param productSpecForm
+     * @return
+     */
+    ProductSpecVO createProductSpec(ProductSpecForm productSpecForm);
 }

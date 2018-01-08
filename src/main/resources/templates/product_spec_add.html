@@ -459,20 +459,25 @@
                 <div class="col-md-12">
 
                     <div class="box box-primary">
-                        <form action="" >
-                            <input type="hidden" th:value="${product.productId}">
+                        <form action="" method="post" th:action="@{/product/{productId}/spec/new(productId=${product.productId})}" th:object="${productSpecForm} ">
+                            <div class="errors" th:if="${#fields.hasErrors('*')}">
+                                <ul>
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+                            <input type="hidden" th:value="${product.productId}" th:field="*{productId}">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="color">颜色</label>
-                                    <input type="text" class="form-control" id="color" placeholder="颜色">
+                                    <label th:for="${#ids.next('color')}">颜色</label>
+                                    <input type="text" class="form-control" placeholder="颜色" value="黑色" th:field="*{color}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="size">型号/花型</label>
-                                    <input type="text" class="form-control" id="size" placeholder="型号/花型" />
+                                    <label th:for="${#ids.next('size')}">型号/花型</label>
+                                    <input type="text" class="form-control" placeholder="型号/花型" value="均码" th:field="*{size}"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="quantity">名称</label>
-                                    <input type="number" class="form-control" id="quantity" placeholder="数量" />
+                                    <label th:for="${#ids.next('name')}">数量</label>
+                                    <input type="number" class="form-control" placeholder="数量" value="0" th:field="*{quantity}"/>
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">添加明细</button>

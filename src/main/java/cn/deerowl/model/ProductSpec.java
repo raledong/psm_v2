@@ -1,10 +1,21 @@
 package cn.deerowl.model;
 
+import cn.deerowl.vo.product.ProductSpecForm;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "product_spec")
 public class ProductSpec {
+
+    public ProductSpec(){}
+
+    public ProductSpec(ProductSpecForm productSpecForm, Product product){
+        this.setSize(productSpecForm.getSize());
+        this.setColor(productSpecForm.getColor());
+        this.setQuantity(productSpecForm.getQuantity());
+        this.setProduct(product);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

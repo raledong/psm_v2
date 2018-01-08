@@ -25,6 +25,10 @@ public class Product {
         this.setCategory(new Category());
     }
 
+    public Product(Long productId){
+        this.setProductId(productId);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")

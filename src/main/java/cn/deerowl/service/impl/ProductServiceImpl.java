@@ -5,10 +5,9 @@ import cn.deerowl.dao.ProductRepository;
 import cn.deerowl.dao.ProductSpecRepository;
 import cn.deerowl.model.Category;
 import cn.deerowl.model.Product;
+import cn.deerowl.model.ProductSpec;
 import cn.deerowl.service.ProductService;
-import cn.deerowl.vo.product.ProductDetailVO;
-import cn.deerowl.vo.product.ProductForm;
-import cn.deerowl.vo.product.ProductVO;
+import cn.deerowl.vo.product.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductSpecRepository productSpecRepository;
 
     @Override
-    public ProductDetailVO createNewProduct(ProductForm productForm) {
+    public ProductDetailVO createProduct(ProductForm productForm) {
         Category category = categoryRepository.findOne(productForm.getCategoryId());
         Product product = new Product(productForm);
         product.setCategory(category);
@@ -46,5 +45,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProductSpec(Long productSpecId) {
         productSpecRepository.delete(productSpecId);
+    }
+
+    @Override
+    public ProductSpecVO createProductSpec(ProductSpecForm productSpecForm) {
+        Product product = productRepository.findOne(productSpecForm.getProductId());
+        if (product==null) {
+            //抛出异常
+            return null;
+        }
+        ProductSpec productSpec = new ProductSpec(productSpecForm, product);
+        return new ProductSpecVO(productSpecRepository.save(productSpec));
     }
 }
