@@ -6,6 +6,7 @@ import cn.deerowl.vo.category.BriefCategoryVO;
 import cn.deerowl.vo.product.ProductDetailVO;
 import cn.deerowl.vo.product.ProductForm;
 import cn.deerowl.vo.product.ProductSpecForm;
+import cn.deerowl.vo.product.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,12 +56,19 @@ public class AddProductController {
             model.addAttribute("product", productVO);
         }
         model.addAttribute(productSpecForm);
+        System.out.println(model);
         return "product_spec_add";
     }
 
     @PostMapping("/{productId}/spec/new")
-    public String addProductSpec(@Valid ProductSpecForm productSpecForm, BindingResult bindingResult, Model model){
+    public String addProductSpec(@Valid ProductSpecForm productSpecForm, BindingResult bindingResult, @PathVariable Long productId,  Model model){
         if (bindingResult.hasErrors()){
+            //这一段代码需要优化= =
+            ProductDetailVO productVO = productService.findProductById(productId);
+            if (productVO==null){
+                //TODO 返回错误页面
+            }
+            model.addAttribute("product", productVO);
             return "product_spec_add";
         }
         productService.createProductSpec(productSpecForm);
@@ -81,6 +89,7 @@ public class AddProductController {
         model.addAttribute("productId", productId);
         return "redirect:/product/{productId}/spec/new";
     }
+
     /**
      * 预先获取所有的简单分类
      */

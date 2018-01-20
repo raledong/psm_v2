@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class ProductRepositoryTest {
 
     @Test
     public void testFindAll(){
-        System.out.println(productRepository.findOne((long)1).getCategory().getName());
+        PageRequest pageRequest = new PageRequest(0, 10);
+        Category category = new Category((long)1);
     }
 }

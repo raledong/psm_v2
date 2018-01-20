@@ -1,17 +1,21 @@
 package cn.deerowl.vo.product;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class ProductSpecForm {
 
     @NotNull(message = "必须有选中的商品")
     private long productId;
 
-    @Min(value = 1, message = "颜色不可以为空")
+    @NotBlank(message = "颜色不可以为空")
     private String color;
 
-    @Min(value = 1, message = "型号/花型不可以为空")
+    @NotBlank(message = "型号/花型不可以为空")
     private String size;
 
     private int quantity;

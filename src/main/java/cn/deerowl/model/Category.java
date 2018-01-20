@@ -12,7 +12,9 @@ import java.util.List;
 public class Category {
 
     public Category(){}
-
+    public Category(Long id){
+        this.setId(id);
+    }
     public Category(Long id, String name){
         this.setId(id);
         this.setName(name);

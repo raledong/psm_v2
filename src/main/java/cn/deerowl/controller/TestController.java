@@ -12,14 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class TestController {
 
-    @Value("${notempty}")
-    private String notEmpty;
 
-    @GetMapping
-    public @ResponseBody int index(){
-        System.out.println(notEmpty);
-        return 1;
-    }
 
     @GetMapping("/hello/rale")
     public String welcome(Model model){

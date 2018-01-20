@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>添加商品详情</title>
+    <title>录入商品</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <!-- Bootstrap 3.3.5 -->
@@ -422,72 +422,55 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                添加商品详情
+                查看所有商品
             </h1>
         </section>
+        <!--@Todo 完成查看所有商品的页面-->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title" th:text="'货号：' + ${product.getShortId()} + ' 序列号：' + ${product.serializedId} + '名称：' + ${product.name}">
-                                货号：1231  序列号：23415153 名称：片飘花伊人哼哼哈嘿
-                            </h3>
-                        </div>
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <tbody th:if="${not #lists.isEmpty(product.productSpecs)}">
-                                <tr>
-                                    <th>颜色</th>
-                                    <th>型号/花型</th>
-                                    <th>数量</th>
-                                    <th>操作</th>
-                                </tr>
-                                <tr th:each="spec : ${product.productSpecs}">
-                                    <td th:text="${spec.color}">无</td>
-                                    <td th:text="${spec.size}">彩色</td>
-                                    <td th:text="${spec.quantity}">100</td>
-                                    <td><a href="#" class="btn btn-danger" th:href="@{/product/{productId}/spec/remove/{specId}(productId=${product.productId}, specId=${spec.productSpecId})}">删除</a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-
                     <div class="box box-primary">
-                        <form action="" method="post" th:action="@{/product/{productId}/spec/new(productId=${product.productId})}" th:object="${productSpecForm} ">
+                        <form action="" th:action="@{/product/new}" th:object="${productForm}" method="post">
                             <div class="errors" th:if="${#fields.hasErrors('*')}">
                                 <ul>
                                     <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
                                 </ul>
                             </div>
-                            <input type="hidden" th:value="${product.productId}" th:field="*{productId}">
+                            <input type="hidden" th:field="*{id}">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label th:for="${#ids.next('color')}">颜色</label>
-                                    <input type="text" class="form-control" placeholder="颜色" value="黑色" th:field="*{color}">
+                                    <label th:for="${#ids.next('shortId')}">货号</label>
+                                    <input type="text" class="form-control" placeholder="货号" th:field="*{shortId}">
                                 </div>
                                 <div class="form-group">
-                                    <label th:for="${#ids.next('size')}">型号/花型</label>
-                                    <input type="text" class="form-control" placeholder="型号/花型" value="均码" th:field="*{size}"/>
+                                    <label th:for="${#ids.next('serializedId')}">序列号</label>
+                                    <input type="text" class="form-control" placeholder="序列号" th:field="*{serializedId}"/>
                                 </div>
                                 <div class="form-group">
-                                    <label th:for="${#ids.next('name')}">数量</label>
-                                    <input type="number" class="form-control" placeholder="数量" value="0" th:field="*{quantity}"/>
+                                    <label th:for="${#ids.next('name')}">名称</label>
+                                    <input type="text" class="form-control" placeholder="名称" th:field="*{name}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="${#ids.next('categoryId')}">分类</label>
+                                    <select class="form-control" th:field="*{categoryId}">
+                                        <option th:each="category : ${allCategories}"
+                                                th:value="${category.categoryId}"
+                                                th:text="${category.name}">分类</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="${#ids.next('comment')}"></label>
+                                    <input type="text" class="form-control" placeholder="备注" th:field="*{comment}">
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">添加明细</button>
+                                    <button type="submit" class="btn btn-primary">创建商品</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
 
+            </div>
 
         </section>
 
